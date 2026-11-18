@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#050008">
+  <title>Alex Launcher</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;700&family=Comfortaa:wght@400;700&family=Dancing+Script:wght@400;700&family=Josefin+Sans:wght@400;700&family=Lato:wght@400;700&family=Merriweather:wght@400;700&family=Montserrat:wght@400;700&family=Nunito:wght@400;700&family=Open+Sans:wght@400;700&family=Orbitron:wght@400;700&family=Oswald:wght@400;700&family=Pacifico&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Quicksand:wght@400;700&family=Raleway:wght@400;700&family=Roboto:wght@400;700&family=Space+Grotesk:wght@400;700&family=Ubuntu:wght@400;700&display=swap">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./app-drawer.css">
+</head>
+<body>
+
+  <main class="launcher" id="launcher-root">
+
+    <!-- 3D WALLPAPER, ANIMATED GRADIENT DEPTH & PARALLAX LAYERS -->
+    <div class="launcher-wallpaper-layer" id="launcher-wallpaper-layer" aria-hidden="true"></div>
+    <div class="launcher-depth-gradient" id="launcher-depth-gradient" aria-hidden="true"></div>
+    <div class="launcher-parallax-bg" id="launcher-parallax-bg" aria-hidden="true"></div>
+    <canvas class="launcher-particles-canvas" id="launcher-particles" aria-hidden="true"></canvas>
+
+    <!-- STATUS BAR -->
+    <header class="status-bar">
+      <div class="status-left">
+        <span id="status-time">09:41</span>
+        <span class="status-mode-label" id="status-mode-label">Web Preview</span>
+        <span class="status-profile-chip" id="status-profile-chip">Personal</span>
+      </div>
+      <div class="status-right">
+        <span class="status-chip" id="status-network" title="Network status">Online</span>
+        <span class="status-chip" id="status-battery" title="Battery status">--%</span>
+        <button
+          type="button"
+          class="status-shade-btn"
+          id="recents-trigger"
+          aria-label="Open multitasking recent apps"
+          title="Recent apps panel"
+        >⧉</button>
+        <button
+          type="button"
+          class="status-shade-btn"
+          id="notifications-trigger"
+          aria-label="Open quick shade and notifications"
+          title="Swipe down or tap for shade"
+        >▾</button>
+      </div>
+    </header>
+
+    <!-- HOME WORKSPACE (MOBILE STACK / DESKTOP 2-COLUMN) -->
+    <div class="home-workspace" id="home-workspace">
+
+      <!-- LEFT / TOP PANEL: CLOCK + WIDGETS + SEARCH -->
+      <section class="home-widgets-column">
+
+        <!-- CLOCK (DIGITAL + ANALOG) & QUICK WEATHER HERO -->
+        <section class="clock-section" id="clock-widget" data-clock-style="modern">
+          <div class="clock-hero-left">
+            <div class="analog-clock-wrap" id="analog-clock-wrap" aria-hidden="true">
+              <svg class="analog-clock-svg" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" class="analog-dial"/>
+                <circle cx="50" cy="50" r="39" class="analog-inner-ring"/>
+                <line x1="50" y1="50" x2="50" y2="25" id="analog-hour-hand" class="analog-hand hour"/>
+                <line x1="50" y1="50" x2="50" y2="16" id="analog-min-hand" class="analog-hand minute"/>
+                <line x1="50" y1="54" x2="50" y2="14" id="analog-sec-hand" class="analog-hand second"/>
+                <circle cx="50" cy="50" r="3.2" class="analog-pivot"/>
+              </svg>
+            </div>
+            <div class="clock-primary">
+              <div class="clock-readout-row">
+                <h1 id="clock">09:41</h1>
+                <span class="clock-seconds" id="clock-seconds" aria-hidden="true"></span>
+              </div>
+              <p id="date">Wednesday, 18 November</p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="weather"
+            id="hero-weather-trigger"
+            aria-label="Open weather details and location"
+          >
+            <span class="weather-glyph" id="hero-weather-icon" aria-hidden="true">☁</span>
+            <h2 id="hero-weather-temp">--°</h2>
+            <p id="hero-weather-city">Set Weather</p>
+          </button>
+        </section>
+
+        <!-- SMART WIDGET STACK (WEATHER · MUSIC · CALENDAR · BATTERY) -->
+        <section class="widget-stack glass-panel" id="widget-stack" aria-label="Home widgets">
+          <div class="widget-tabs" role="tablist" aria-label="Widget switcher">
+            <button type="button" class="widget-tab active" data-widget-tab="weather" role="tab" aria-selected="true">Weather</button>
+            <button type="button" class="widget-tab" data-widget-tab="music" role="tab" aria-selected="false">Music</button>
+            <button type="button" class="widget-tab" data-widget-tab="calendar" role="tab" aria-selected="false">Calendar</button>
+            <button type="button" class="widget-tab" data-widget-tab="battery" role="tab" aria-selected="false">Battery</button>
+          </div>
+
+          <div class="widget-slides" id="widget-slides">
+
+            <!-- WEATHER WIDGET -->
+            <article class="widget-card active" data-widget-panel="weather">
+              <div class="widget-main-row">
+                <div class="widget-weather-info">
+                  <div class="widget-temp-line">
+                    <span class="widget-title-lg" id="w-weather-temp">--°C</span>
+                    <span class="widget-sub-accent" id="w-weather-condition">Location not set</span>
+                  </div>
+                  <p class="widget-meta-line" id="w-weather-meta">Tap GPS or City to load live weather</p>
+                </div>
+                <div class="widget-action-group">
+                  <button type="button" class="widget-btn" id="weather-gps-btn" title="Use device GPS">GPS</button>
+                  <button type="button" class="widget-btn primary" id="weather-city-btn">City</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- MUSIC PLAYER WIDGET -->
+            <article class="widget-card music-widget-card" data-widget-panel="music">
+              <div class="music-widget-top">
+                <div class="music-artwork-wrap" id="music-artwork-wrap">
+                  <img id="music-artwork" alt="Album artwork">
+                </div>
+                <div class="widget-music-meta">
+                  <div class="music-status-row">
+                    <span class="music-source-badge" id="music-source-badge">Browser Preview</span>
+                    <button type="button" class="music-layout-toggle" id="music-layout-toggle" aria-label="Toggle compact or expanded music player">Expand</button>
+                  </div>
+                  <strong class="widget-title-sm" id="music-track-title">Midnight AMOLED</strong>
+                  <p class="widget-meta-line" id="music-track-artist">Synth Preview · 84 BPM</p>
+                  <p class="music-preview-note" id="music-preview-note">No active Android media · Load audio or tap ▶ preview</p>
+                </div>
+                <div class="widget-music-controls">
+                  <button type="button" class="widget-icon-btn" id="music-prev-btn" aria-label="Previous track">⏮</button>
+                  <button type="button" class="widget-icon-btn play" id="music-play-btn" aria-label="Play or pause">▶</button>
+                  <button type="button" class="widget-icon-btn" id="music-next-btn" aria-label="Next track">⏭</button>
+                  <label class="widget-btn" for="music-file-input" title="Load audio files from device">Audio</label>
+                  <input type="file" id="music-file-input" accept="audio/*" multiple hidden>
+                </div>
+              </div>
+              <div class="widget-progress-row">
+                <span class="tabular-num" id="music-time-elapsed">0:00</span>
+                <div
+                  class="widget-progress-track"
+                  id="music-progress-track"
+                  role="slider"
+                  tabindex="0"
+                  aria-label="Audio playback progress"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="0"
+                >
+                  <div class="widget-progress-fill" id="music-progress-fill"></div>
+                </div>
+                <span class="tabular-num" id="music-time-total">3:00</span>
+              </div>
+            </article>
+
+            <!-- CALENDAR WIDGET -->
+            <article class="widget-card" data-widget-panel="calendar">
+              <div class="widget-calendar-header">
+                <div>
+                  <strong class="widget-title-sm" id="calendar-month-label">November 2026</strong>
+                  <p class="widget-meta-line" id="calendar-events-summary">No events today</p>
+                </div>
+                <button type="button" class="widget-btn primary" id="calendar-add-btn">+ Event</button>
+              </div>
+              <div class="calendar-week-strip" id="calendar-week-strip"></div>
+              <div class="calendar-events-list" id="calendar-events-list"></div>
+            </article>
+
+            <!-- BATTERY & SYSTEM WIDGET -->
+            <article class="widget-card" data-widget-panel="battery">
+              <div class="widget-main-row">
+                <div class="widget-battery-info">
+                  <div class="widget-temp-line">
+                    <span class="widget-title-lg tabular-num" id="w-battery-level">--%</span>
+                    <span class="widget-sub-accent" id="w-battery-state">Checking...</span>
+                  </div>
+                  <p class="widget-meta-line" id="w-system-specs">Checking browser system APIs...</p>
+                </div>
+                <div class="battery-gauge-box" aria-hidden="true">
+                  <div class="battery-gauge-fill" id="w-battery-bar"></div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+      </section>
+
+      <!-- RIGHT / CENTER STAGE: UNIFIED RADIAL WHEEL STAGE + DOCK -->
+      <section class="home-stage-column">
+
+        <div class="wheel-stage" id="wheel-stage">
+
+          <!-- OUTER WHEEL RING: FIRST WHEEL (FAVOURITES) -->
+          <section class="favourites" id="home-favourites" aria-label="First wheel favourite apps"></section>
+
+          <!-- RADIAL APP WHEEL: SECOND WHEEL -->
+          <section class="app-wheel" id="app-wheel" aria-label="Second radial app wheel">
+            <button
+              type="button"
+              class="wheel-center"
+              id="wheel-center-toggle"
+              aria-expanded="true"
+              aria-label="Toggle radial wheel open or closed"
+              title="Tap to bloom/collapse · Drag wheel to rotate"
+            >A</button>
+          </section>
+
+        </div>
+
+        <!-- BOTTOM DOCK -->
+        <nav class="bottom-dock glass-panel" id="home-dock" aria-label="App dock">
+
+          <button type="button" class="dock-btn" data-app="Phone" aria-label="Phone">
+            <span class="app-icon-box"></span>
+          </button>
+
+          <button type="button" class="dock-btn" data-app="Messages" aria-label="Messages">
+            <span class="app-icon-box"></span>
+          </button>
+
+          <button
+            type="button"
+            class="dock-drawer-trigger"
+            id="open-apps"
+            aria-label="Open App Drawer"
+          >⠿</button>
+
+          <button type="button" class="dock-btn dock-optional" data-app="Contacts" aria-label="Contacts">
+            <span class="app-icon-box"></span>
+          </button>
+
+          <button type="button" class="dock-btn" data-app="Camera" aria-label="Camera">
+            <span class="app-icon-box"></span>
+          </button>
+
+          <button type="button" class="dock-btn dock-extra" data-app="Chrome" aria-label="Chrome">
+            <span class="app-icon-box"></span>
+          </button>
+
+        </nav>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- APP DRAWER -->
+  <section class="app-drawer" id="app-drawer" aria-hidden="true">
+
+    <div class="drawer-header">
+      <div>
+        <h2>All Apps</h2>
+        <p class="drawer-runtime-note" id="drawer-runtime-note">Browser Preview · Built-in Web & Launcher Apps</p>
+      </div>
+      <div class="drawer-header-actions">
+        <button type="button" class="drawer-pill-btn" id="drawer-private-toggle" aria-pressed="false" title="Toggle Private Space">Private</button>
+        <button type="button" class="drawer-pill-btn" id="drawer-manage-toggle" aria-pressed="false">Manage</button>
+        <a class="drawer-pill-btn" href="./settings.html">Settings</a>
+        <button type="button" class="drawer-close" id="drawer-close" aria-label="Close App Drawer">×</button>
+      </div>
+    </div>
+
+    <!-- DRAWER CONTENT -->
+    <div class="drawer-content">
+
+      <div class="drawer-all">
+        <h3 id="drawer-heading">All Applications</h3>
+        <div class="drawer-grid" id="drawer-grid"></div>
+      </div>
+
+      <!-- ALPHABET NAVIGATION -->
+      <div class="drawer-alphabet" id="drawer-alphabet">
+
+        <button type="button" data-letter="A">A</button>
+        <button type="button" data-letter="B">B</button>
+        <button type="button" data-letter="C">C</button>
+        <button type="button" data-letter="D">D</button>
+        <button type="button" data-letter="E">E</button>
+        <button type="button" data-letter="F">F</button>
+        <button type="button" data-letter="G">G</button>
+        <button type="button" data-letter="H">H</button>
+        <button type="button" data-letter="I">I</button>
+        <button type="button" data-letter="J">J</button>
+        <button type="button" data-letter="K">K</button>
+        <button type="button" data-letter="L">L</button>
+        <button type="button" data-letter="M">M</button>
+        <button type="button" data-letter="N">N</button>
+        <button type="button" data-letter="O">O</button>
+        <button type="button" data-letter="P">P</button>
+        <button type="button" data-letter="Q">Q</button>
+        <button type="button" data-letter="R">R</button>
+        <button type="button" data-letter="S">S</button>
+        <button type="button" data-letter="T">T</button>
+        <button type="button" data-letter="U">U</button>
+        <button type="button" data-letter="V">V</button>
+        <button type="button" data-letter="W">W</button>
+        <button type="button" data-letter="X">X</button>
+        <button type="button" data-letter="Y">Y</button>
+        <button type="button" data-letter="Z">Z</button>
+
+      </div>
+
+      <div class="niagara-letter-bubble" id="niagara-letter-bubble" aria-hidden="true"></div>
+
+    </div>
+
+  </section>
+
+  <!-- NOTIFICATION SHADE / QUICK CONTROLS -->
+  <section class="shade-overlay" id="notifications-shade" aria-hidden="true">
+    <div class="shade-panel glass-panel">
+      <div class="shade-header">
+        <div>
+          <h3>Quick Controls & Notifications</h3>
+          <p class="shade-sub" id="shade-capability-text">Checking Android bridge...</p>
+        </div>
+        <button type="button" class="drawer-close" id="shade-close" aria-label="Close quick shade">×</button>
+      </div>
+
+      <div class="shade-quick-grid">
+        <button type="button" class="shade-tile" id="shade-toggle-music">
+          <strong>Audio Synth</strong>
+          <small id="shade-music-state">Paused</small>
+        </button>
+        <button type="button" class="shade-tile" id="shade-refresh-weather">
+          <strong>Weather</strong>
+          <small>Refresh</small>
+        </button>
+        <button type="button" class="shade-tile" id="shade-open-drawer">
+          <strong>App Drawer</strong>
+          <small>All Apps</small>
+        </button>
+        <button type="button" class="shade-tile" id="shade-open-recents">
+          <strong>Multitasking</strong>
+          <small>Recent Apps</small>
+        </button>
+        <button type="button" class="shade-tile" id="shade-toggle-private">
+          <strong>Private Space</strong>
+          <small id="shade-private-state">Standard Home</small>
+        </button>
+        <a class="shade-tile" href="./settings.html">
+          <strong>Settings</strong>
+          <small>Control Center</small>
+        </a>
+      </div>
+
+      <div class="shade-notifications" id="shade-notifications-list"></div>
+    </div>
+  </section>
+
+  <!-- FLOATING EDGE SIDEBAR -->
+  <aside class="floating-sidebar" id="floating-sidebar" aria-label="Floating quick sidebar">
+    <button
+      type="button"
+      class="sidebar-handle"
+      id="sidebar-toggle-btn"
+      aria-expanded="false"
+      aria-label="Toggle floating sidebar"
+    >‹</button>
+    <div class="sidebar-drawer glass-panel" id="sidebar-panel">
+      <div class="sidebar-section-label">Pinned</div>
+      <div class="sidebar-apps-list" id="sidebar-apps-list"></div>
+      <div class="sidebar-section-label">Recent</div>
+      <div class="sidebar-recent-list" id="sidebar-recent-list"></div>
+      <div class="sidebar-shortcuts">
+        <button type="button" class="sidebar-shortcut-btn" id="sidebar-recents-btn" title="Recent Apps">⧉</button>
+        <button type="button" class="sidebar-shortcut-btn" id="sidebar-lock-btn" title="Lock Screen">🔒</button>
+        <a class="sidebar-shortcut-btn" href="./settings.html" title="Control Center">⚙</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MULTITASKING PANEL -->
+  <section class="multitasking-overlay" id="multitasking-panel" aria-hidden="true">
+    <div class="multitasking-shell glass-panel">
+      <div class="multitasking-header">
+        <div>
+          <h3>Multitasking & Recents</h3>
+          <p class="shade-sub" id="multitasking-note">Alex Launcher session recents · Native task clearing requires Android permissions</p>
+        </div>
+        <div class="multitasking-actions">
+          <button type="button" class="drawer-pill-btn" id="multitasking-clear-all">Clear Recents</button>
+          <button type="button" class="drawer-close" id="multitasking-close" aria-label="Close multitasking">×</button>
+        </div>
+      </div>
+      <div class="multitasking-cards" id="multitasking-cards"></div>
+      <div class="multitasking-fav-bar" id="multitasking-fav-bar"></div>
+    </div>
+  </section>
+
+  <!-- CHARGING ANIMATION OVERLAY -->
+  <section class="charging-overlay" id="charging-overlay" aria-hidden="true">
+    <div class="charging-core" id="charging-core">
+      <div class="charging-ring outer"></div>
+      <div class="charging-ring inner"></div>
+      <div class="charging-readout">
+        <span class="charging-bolt">⚡</span>
+        <strong class="tabular-num" id="charging-pct">100%</strong>
+        <small id="charging-label">Charging</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY LOCK SCREEN OVERLAY -->
+  <section class="lock-overlay" id="lock-screen-overlay" aria-hidden="true">
+    <div class="lock-card glass-panel">
+      <div class="lock-icon">🔐</div>
+      <h3 id="lock-screen-title">Alex Launcher Locked</h3>
+      <p class="shade-sub" id="lock-screen-subtitle">Enter your PIN or password to continue</p>
+      <input
+        type="password"
+        class="modal-input"
+        id="lock-credential-input"
+        placeholder="PIN or password"
+        autocomplete="current-password"
+      >
+      <p class="lock-error" id="lock-error-msg"></p>
+      <div class="lock-actions">
+        <button type="button" class="modal-btn" id="lock-biometric-btn" hidden>Biometric</button>
+        <button type="button" class="modal-btn" id="lock-cancel-btn" hidden>Cancel</button>
+        <button type="button" class="modal-btn primary" id="lock-unlock-btn">Unlock</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAUNCHER MODAL (CITY PICKER / CALENDAR EVENT / CALCULATOR / WEB LAUNCH) -->
+  <section class="launcher-modal" id="launcher-modal" aria-hidden="true">
+    <div class="modal-card glass-panel" id="launcher-modal-card">
+      <div class="modal-header">
+        <h3 id="modal-title">Alex Launcher</h3>
+        <button type="button" class="drawer-close" id="modal-close" aria-label="Close dialog">×</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </section>
+
+  <div class="launcher-toast" id="launcher-toast" role="status" aria-live="polite"></div>
+
+  <!-- JAVASCRIPT -->
+  <script type="module" src="./script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+
+{
+  "name": "alex-launcher",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Alex Launcher - Purple Neon Android Launcher",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 3000",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 3000",
+    "lint": "node --check icons.js && node --check android-bridge.js && node --check script.js && node --check settings.js",
+    "android:add": "cap add android",
+    "android:sync": "cap sync android",
+    "android:patch": "node scripts/patch-android.js"
+  },
+  "dependencies": {
+    "@capacitor/core": "^7.4.3",
+    "@capacitor/android": "^7.4.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.3",
+    "vite": "^6.3.5"
+  }
+}

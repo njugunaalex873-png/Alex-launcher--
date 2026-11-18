@@ -1,0 +1,6 @@
+{
+  "name": "Alex Launcher",
+  "description": "Alex Launcher - Purple Neon Android Launcher",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
