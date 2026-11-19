@@ -1,14 +1,17 @@
 name: Alex Launcher APK Build
 
-on: [push, workflow_dispatch]
+'on':
+push:
+branches:
+- main
+workflow_dispatch:
 
 jobs:
 build:
 runs-on: ubuntu-latest
-
 steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
+- name: Checkout repository
+uses: actions/checkout@v4
 
   - name: Setup Node.js
     uses: actions/setup-node@v4
@@ -19,7 +22,7 @@ steps:
     uses: actions/setup-java@v4
     with:
       distribution: temurin
-      java-version: "21"
+      java-version: '21'
 
   - name: Setup Android SDK
     uses: android-actions/setup-android@v3
