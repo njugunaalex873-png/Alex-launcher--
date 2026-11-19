@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080810">
+  <title>Alex Launcher Control Center</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;700&family=Comfortaa:wght@400;700&family=Dancing+Script:wght@400;700&family=Josefin+Sans:wght@400;700&family=Lato:wght@400;700&family=Merriweather:wght@400;700&family=Montserrat:wght@400;700&family=Nunito:wght@400;700&family=Open+Sans:wght@400;700&family=Orbitron:wght@400;700&family=Oswald:wght@400;700&family=Pacifico&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Quicksand:wght@400;700&family=Raleway:wght@400;700&family=Roboto:wght@400;700&family=Space+Grotesk:wght@400;700&family=Ubuntu:wght@400;700&display=swap">
+  <script type="module" crossorigin src="./assets/settings-ClC08opd.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/android-bridge-BiqhhmN9.js">
+  <link rel="stylesheet" crossorigin href="./assets/android-bridge-qJKB3DoN.css">
+  <link rel="stylesheet" crossorigin href="./assets/settings-VVWawXFe.css">
+</head>
+<body>
+
+<section class="launcher-settings active" id="launcher-settings">
+
+  <header class="settings-header">
+    <div>
+      <h1>Control Center</h1>
+      <p class="settings-description">Alex Launcher • Premium Ultimate Edition</p>
+    </div>
+    <button type="button" id="settings-close" aria-label="Close settings">×</button>
+  </header>
+
+  <div id="settings-home">
+
+    <h3 class="settings-subtitle">VISUAL ENGINE &amp; APPEARANCE</h3>
+    <div class="settings-group">
+      <button type="button" class="settings-item" data-page="appearance">
+        <span class="settings-icon">✦</span>
+        <span class="settings-item-info"><strong>1. Appearance Studio</strong><small>Clock mode, neon edge lighting, search bar, labels &amp; fonts</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="glass">
+        <span class="settings-icon">◈</span>
+        <span class="settings-item-info"><strong>2. Glassmorphism Studio</strong><small>Blur intensity, panel transparency &amp; frosted surfaces</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="3d-effects">
+        <span class="settings-icon">❖</span>
+        <span class="settings-item-info"><strong>3. 3D Effects Studio</strong><small>3D parallax tilt, depth, animation intensity &amp; charging FX</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="wallpapers">
+        <span class="settings-icon">🖼️</span>
+        <span class="settings-item-info"><strong>4. Wallpaper Studio</strong><small>Live AMOLED gradients, aurora, particles &amp; custom images</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="themes">
+        <span class="settings-icon">🎨</span>
+        <span class="settings-item-info"><strong>5. Theme Studio</strong><small>Built-in AMOLED palettes &amp; custom theme creator</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="app-styles">
+        <span class="settings-icon">⬡</span>
+        <span class="settings-item-info"><strong>6. Icon Studio</strong><small>Icon packs, 3D depth, reflections, animations &amp; custom icons</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+    </div>
+
+    <h3 class="settings-subtitle">WORKSPACE, CONTROLS &amp; MEDIA</h3>
+    <div class="settings-group">
+      <button type="button" class="settings-item" data-page="widgets">
+        <span class="settings-icon">◫</span>
+        <span class="settings-item-info"><strong>7. Widget Studio</strong><small>Holographic &amp; glass surfaces, order, colors &amp; visibility</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="drawer">
+        <span class="settings-icon">▦</span>
+        <span class="settings-item-info"><strong>8. App Drawer Studio</strong><small>Grid, Niagara list, Smart Categories &amp; sort order</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="home-screen">
+        <span class="settings-icon">◎</span>
+        <span class="settings-item-info"><strong>9. App Wheel Studio</strong><small>Classic, 3D Rotating &amp; Floating Radial wheel, colors &amp; haptics</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="gestures">
+        <span class="settings-icon">⇄</span>
+        <span class="settings-item-info"><strong>10. Gesture Studio</strong><small>Swipes, double tap, long press &amp; two-finger actions</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="music">
+        <span class="settings-icon">♫</span>
+        <span class="settings-item-info"><strong>11. Music Studio</strong><small>Compact &amp; expanded player layout, Android MediaSession bridge</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="sidebar">
+        <span class="settings-icon">◧</span>
+        <span class="settings-item-info"><strong>12. Sidebar Studio</strong><small>Floating quick sidebar side, transparency &amp; pinned apps</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+    </div>
+
+    <h3 class="settings-subtitle">SECURITY, PROFILES &amp; SYSTEM</h3>
+    <div class="settings-group">
+      <button type="button" class="settings-item" data-page="privacy">
+        <span class="settings-icon">🔐</span>
+        <span class="settings-item-info"><strong>13. Privacy Center</strong><small>Salted PIN/password lock, app lock, Private Space &amp; hidden apps</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="notifications">
+        <span class="settings-icon">🔔</span>
+        <span class="settings-item-info"><strong>14. Notification Center</strong><small>Badge count/dot styles, badge color &amp; per-app alerts</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="backup">
+        <span class="settings-icon">💾</span>
+        <span class="settings-item-info"><strong>15. Backup and Restore</strong><small>Local snapshots &amp; confirmed JSON configuration import/export</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="profiles">
+        <span class="settings-icon">👤</span>
+        <span class="settings-item-info"><strong>16. Profile Manager</strong><small>Personal, Work, Study, Minimal, Gaming &amp; custom setups</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+
+      <button type="button" class="settings-item" data-page="animations">
+        <span class="settings-icon">⚡</span>
+        <span class="settings-item-info"><strong>17. Performance Center</strong><small>Motion throttle, Low-RAM mode &amp; real device diagnostics</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+    </div>
+
+    <h3 class="settings-subtitle">ABOUT</h3>
+    <div class="settings-group">
+      <button type="button" class="settings-item" data-page="about">
+        <span class="settings-icon">ⓘ</span>
+        <span class="settings-item-info"><strong>About &amp; Android Integration</strong><small>Live browser vs native APK bridge diagnostics</small></span>
+        <span class="settings-arrow">›</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 1. APPEARANCE STUDIO -->
+  <div class="settings-page" id="page-appearance">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">1. Appearance Studio</h2>
+
+    <div class="settings-control">
+      <label for="clock-type">Home Clock Type</label>
+      <select class="settings-select" id="clock-type">
+        <option value="digital">Digital Clock Only</option>
+        <option value="analog">Neon Analog Clock Only</option>
+        <option value="dual">Dual Digital + Analog</option>
+      </select>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-edge-lighting">Neon Edge Lighting</label>
+        <small>Subtle AMOLED perimeter accent glow around the home viewport</small>
+      </div>
+      <button type="button" class="settings-toggle" id="toggle-edge-lighting" aria-pressed="false"></button>
+    </div>
+
+    <div class="settings-control">
+      <label for="search-style">App Drawer Search Style</label>
+      <select class="settings-select" id="search-style">
+        <option value="rounded">Rounded Pill</option>
+        <option value="square">Crisp Square</option>
+        <option value="neon">Neon Outline Glow</option>
+      </select>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-appearance-labels">Show App Labels</label>
+        <small>Display app names below icons across Home &amp; Drawer</small>
+      </div>
+      <button type="button" class="settings-toggle active" id="toggle-appearance-labels" aria-pressed="true"></button>
+    </div>
+
+    <div class="settings-control">
+      <label>Typography &amp; Font Size</label>
+      <button type="button" class="security-button" data-page="fonts" style="margin-top: 2px;">Open Font Studio (20 Fonts &amp; Scale) ›</button>
+    </div>
+  </div>
+
+  <!-- FONTS SUBPAGE -->
+  <div class="settings-page" id="page-fonts">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">Fonts &amp; Typography</h2>
+    <div class="font-grid" id="font-grid"></div>
+    <div class="settings-control">
+      <label for="font-size">Global Font Size</label>
+      <input class="settings-range" id="font-size" type="range" min="12" max="24" value="15">
+      <small id="font-size-value">15px</small>
+    </div>
+  </div>
+
+  <!-- 2. GLASSMORPHISM STUDIO -->
+  <div class="settings-page" id="page-glass">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">2. Glassmorphism Studio</h2>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-glass-mode">Glassmorphism Mode</label>
+        <small>Translucent frosted panels, background blur and subtle neon borders</small>
+      </div>
+      <button type="button" class="settings-toggle active" id="toggle-glass-mode" aria-pressed="true"></button>
+    </div>
+
+    <div class="settings-control">
+      <label for="glass-blur">Background Blur Intensity</label>
+      <input class="settings-range" id="glass-blur" type="range" min="0" max="28" value="14">
+      <small id="glass-blur-value">14px</small>
+    </div>
+
+    <div class="settings-control">
+      <label for="glass-alpha">Panel Transparency Control</label>
+      <input class="settings-range" id="glass-alpha" type="range" min="15" max="92" value="72">
+      <small id="glass-alpha-value">72% opacity</small>
+    </div>
+  </div>
+
+  <!-- 3. 3D EFFECTS STUDIO -->
+  <div class="settings-page" id="page-3d-effects">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">3. 3D Effects Studio</h2>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-3d-wallpaper">3D Wallpaper Depth &amp; Gradient</label>
+        <small>Interactive parallax, layered backdrop and subtle animated depth</small>
+      </div>
+      <button type="button" class="settings-toggle active" id="toggle-3d-wallpaper" aria-pressed="true"></button>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-motion-enabled">Motion &amp; Gyroscope Parallax</label>
+        <small>Respond to device tilt sensor (where supported) and pointer motion</small>
+      </div>
+      <button type="button" class="settings-toggle active" id="toggle-motion-enabled" aria-pressed="true"></button>
+    </div>
+
+    <div class="settings-control">
+      <label for="parallax-sensitivity">Parallax Sensitivity</label>
+      <input class="settings-range" id="parallax-sensitivity" type="range" min="0" max="30" value="14">
+      <small id="parallax-sensitivity-value">14px depth shift</small>
+      <button type="button" class="settings-back" id="enable-motion-sensor" style="margin-top: 8px; display: none;">Enable Device Tilt Sensor</button>
+      <small id="motion-sensor-status" style="margin-top: 4px;"></small>
+    </div>
+
+    <div class="settings-control">
+      <label for="animation-intensity">Animation Intensity</label>
+      <select class="settings-select" id="animation-intensity">
+        <option value="off">Off (Battery Priority)</option>
+        <option value="subtle">Subtle</option>
+        <option value="balanced" selected>Balanced (Recommended)</option>
+        <option value="vivid">Vivid Glow &amp; Depth</option>
+      </select>
+    </div>
+
+    <div class="security-card">
+      <h3>Custom Charging Animations</h3>
+      <p>Plays automatically when your device starts charging (BatteryManager) or via Preview below.</p>
+
+      <div class="settings-toggle-row app-editor-toggle">
+        <div>
+          <label for="toggle-charging-anim">Enable Charging Animation</label>
+          <small>Show AMOLED neon charging ring on charger connect</small>
+        </div>
+        <button type="button" class="settings-toggle active" id="toggle-charging-anim" aria-pressed="true"></button>
+      </div>
+
+      <div class="app-editor-field">
+        <label for="charging-style">Charging Animation Style</label>
+        <select class="settings-select" id="charging-style">
+          <option value="neon">Dual Neon Orbit</option>
+          <option value="3d">3D Tilted Warp Ring</option>
+          <option value="minimal">Minimalist Ring</option>
+        </select>
+      </div>
+
+      <div class="app-editor-color-row">
+        <div>
+          <label for="charging-color">Charging Glow Color</label>
+          <small>Accent tint for charging ring</small>
+        </div>
+        <div class="app-color-controls">
+          <input class="studio-color-input" id="charging-color" type="color" value="#d000ff">
+        </div>
+      </div>
+
+      <button type="button" class="security-button" id="preview-charging-btn">Preview Charging Animation</button>
+    </div>
+  </div>
+
+  <!-- 4. WALLPAPER STUDIO -->
+  <div class="settings-page" id="page-wallpapers">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">4. Wallpaper Studio</h2>
+
+    <div class="settings-control">
+      <label for="wallpaper-mode">Live Wallpaper Engine</label>
+      <select class="settings-select" id="wallpaper-mode">
+        <option value="amoled">AMOLED Depth Glow</option>
+        <option value="gradient-wave">Animated Gradient Wave</option>
+        <option value="aurora">Neon Conic Aurora</option>
+        <option value="particles">Pure AMOLED + Particle Field</option>
+        <option value="custom">Custom Uploaded Image</option>
+      </select>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-particles">Interactive Particle Effects</label>
+        <small>Lightweight canvas particles (automatically paused when screen is hidden or in Low-RAM mode)</small>
+      </div>
+      <button type="button" class="settings-toggle" id="toggle-particles" aria-pressed="false"></button>
+    </div>
+
+    <div class="settings-control">
+      <label for="particles-count">Particle Density</label>
+      <input class="settings-range" id="particles-count" type="range" min="10" max="80" value="32">
+      <small id="particles-count-value">32 particles</small>
+    </div>
+
+    <div class="settings-control">
+      <label for="wallpaper-depth">Wallpaper 3D Depth Scale</label>
+      <input class="settings-range" id="wallpaper-depth" type="range" min="5" max="22" value="10">
+      <small id="wallpaper-depth-value">1.0x depth</small>
+    </div>
+
+    <div class="settings-control">
+      <label for="wallpaper-upload">Upload Custom Wallpaper Image</label>
+      <input id="wallpaper-upload" type="file" accept="image/*">
+      <small id="wallpaper-status">Choose an image from your device (max 3 MB).</small>
+      <button type="button" class="security-button" id="reset-wallpaper">Reset to Default AMOLED</button>
+    </div>
+  </div>
+
+  <!-- 5. THEME STUDIO -->
+  <div class="settings-page" id="page-themes">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">5. Theme Studio</h2>
+    <div class="theme-grid">
+      <button type="button" class="theme-option" data-theme="purple"><span class="theme-preview"></span><span class="theme-name">Purple Neon</span></button>
+      <button type="button" class="theme-option" data-theme="cyber"><span class="theme-preview cyber"></span><span class="theme-name">Cyber Blue</span></button>
+      <button type="button" class="theme-option" data-theme="crimson"><span class="theme-preview crimson"></span><span class="theme-name">Crimson 3D</span></button>
+      <button type="button" class="theme-option" data-theme="gold"><span class="theme-preview gold"></span><span class="theme-name">Royal Gold</span></button>
+      <button type="button" class="theme-option" data-theme="ice"><span class="theme-preview ice"></span><span class="theme-name">Ice Blue</span></button>
+      <button type="button" class="theme-option" data-theme="emerald"><span class="theme-preview emerald"></span><span class="theme-name">Emerald 3D</span></button>
+      <button type="button" class="theme-option" data-theme="black"><span class="theme-preview black"></span><span class="theme-name">Black 3D</span></button>
+    </div>
+
+    <div class="security-card">
+      <h3>Custom Theme Creator</h3>
+      <p>Create, save, rename, preview, and apply your own custom AMOLED theme presets.</p>
+
+      <div class="app-editor-field">
+        <label for="custom-theme-name">Theme Name</label>
+        <input class="security-input" id="custom-theme-name" type="text" maxlength="24" placeholder="e.g. Ultraviolet Night">
+      </div>
+
+      <div class="app-editor-color-row">
+        <div>
+          <label for="custom-theme-accent">Neon Accent Color</label>
+          <small>Primary glow, borders &amp; active highlights</small>
+        </div>
+        <input class="studio-color-input" id="custom-theme-accent" type="color" value="#b400ff">
+      </div>
+
+      <div class="app-editor-color-row">
+        <div>
+          <label for="custom-theme-bg">AMOLED Surface Base</label>
+          <small>Deep background tone</small>
+        </div>
+        <input class="studio-color-input" id="custom-theme-bg" type="color" value="#050008">
+      </div>
+
+      <div class="app-editor-field">
+        <label for="custom-theme-font">Theme Font</label>
+        <select class="settings-select" id="custom-theme-font"></select>
+      </div>
+
+      <div class="app-editor-field">
+        <label for="custom-theme-pack">Theme Icon Pack</label>
+        <select class="settings-select" id="custom-theme-pack">
+          <option value="vivid">Vivid Android</option>
+          <option value="neon">Cyber Neon Glass</option>
+          <option value="minimal">Monochrome Slate</option>
+          <option value="material">Material You</option>
+        </select>
+      </div>
+
+      <div class="app-editor-field">
+        <label for="custom-theme-intensity">Animation Intensity</label>
+        <select class="settings-select" id="custom-theme-intensity">
+          <option value="subtle">Subtle</option>
+          <option value="balanced" selected>Balanced</option>
+          <option value="vivid">Vivid</option>
+          <option value="off">Off</option>
+        </select>
+      </div>
+
+      <button type="button" class="security-button" id="save-custom-theme-btn">Save &amp; Apply Custom Theme</button>
+      <p class="security-status" id="custom-theme-status">No custom theme selected.</p>
+
+      <div class="studio-item-list" id="custom-themes-list"></div>
+    </div>
+  </div>
+
+  <!-- 6. ICON STUDIO -->
+  <div class="settings-page" id="page-app-styles">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">6. Icon Studio</h2>
+
+    <div class="app-style-preview-bar" aria-label="App icon style preview">
+      <div class="app-style-preview-item">
+        <span class="app-style-preview-icon" data-preview-app="Camera"></span>
+        <small class="app-style-preview-label">Camera</small>
+      </div>
+      <div class="app-style-preview-item">
+        <span class="app-style-preview-icon" data-preview-app="Messages"></span>
+        <small class="app-style-preview-label">Messages</small>
+      </div>
+      <div class="app-style-preview-item">
+        <span class="app-style-preview-icon" data-preview-app="Music"></span>
+        <small class="app-style-preview-label">Music</small>
+      </div>
+      <div class="app-style-preview-item">
+        <span class="app-style-preview-icon" data-preview-app="Settings"></span>
+        <small class="app-style-preview-label">Settings</small>
+      </div>
+    </div>
+
+    <div class="settings-control">
+      <label>Icon Pack</label>
+      <div class="icon-pack-grid">
+        <button type="button" class="icon-pack-option" data-icon-pack="vivid">
+          <strong>Vivid Android</strong>
+          <small>Full-color realistic icons</small>
+        </button>
+        <button type="button" class="icon-pack-option" data-icon-pack="neon">
+          <strong>Cyber Neon Glass</strong>
+          <small>Theme-tinted AMOLED glyphs</small>
+        </button>
+        <button type="button" class="icon-pack-option" data-icon-pack="minimal">
+          <strong>Monochrome Slate</strong>
+          <small>Minimal silver geometry</small>
+        </button>
+        <button type="button" class="icon-pack-option" data-icon-pack="material">
+          <strong>Material You</strong>
+          <small>Tonal adaptive surfaces</small>
+        </button>
+      </div>
+    </div>
+
+    <div class="settings-control">
+      <label for="icon-shape-select">Icon Shape</label>
+      <select class="settings-select" id="icon-shape-select">
+        <option value="squircle">Squircle</option>
+        <option value="circle">Circle</option>
+        <option value="rounded">Rounded Square</option>
+        <option value="teardrop">Teardrop</option>
+      </select>
+    </div>
+
+    <div class="app-style-grid">
+      <button type="button" class="app-style-option" data-app-style="neon">
+        <span class="app-style-swatch neon" data-swatch-app="Camera"></span>
+        <span class="app-style-name">Neon Square</span>
+      </button>
+      <button type="button" class="app-style-option" data-app-style="squircle">
+        <span class="app-style-swatch squircle" data-swatch-app="Camera"></span>
+        <span class="app-style-name">iOS Squircle</span>
+      </button>
+      <button type="button" class="app-style-option" data-app-style="circle">
+        <span class="app-style-swatch circle" data-swatch-app="Camera"></span>
+        <span class="app-style-name">Circle Orb</span>
+      </button>
+      <button type="button" class="app-style-option" data-app-style="glossy">
+        <span class="app-style-swatch glossy" data-swatch-app="Camera"></span>
+        <span class="app-style-name">3D Glossy</span>
+      </button>
+      <button type="button" class="app-style-option" data-app-style="minimal">
+        <span class="app-style-swatch minimal" data-swatch-app="Camera"></span>
+        <span class="app-style-name">Minimalist</span>
+      </button>
+      <button type="button" class="app-style-option" data-app-style="outline">
+        <span class="app-style-swatch outline" data-swatch-app="Camera"></span>
+        <span class="app-style-name">Neon Outline</span>
+      </button>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-app-labels">Show App Labels</label>
+        <small>Display app names under home and drawer icons</small>
+      </div>
+      <button type="button" class="settings-toggle active" id="toggle-app-labels" aria-pressed="true"></button>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-3d-icons">3D Beveled App Icons</label>
+        <small>Add layered highlights and bottom depth shadows</small>
+      </div>
+      <button type="button" class="settings-toggle active" id="toggle-3d-icons" aria-pressed="true"></button>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-icon-reflection">Glass Specular Reflection</label>
+        <small>Diagonal soft sheen across every app tile</small>
+      </div>
+      <button type="button" class="settings-toggle" id="toggle-icon-reflection" aria-pressed="false"></button>
+    </div>
+
+    <div class="settings-control">
+      <label for="icon-anim">Icon Press Animation</label>
+      <select class="settings-select" id="icon-anim">
+        <option value="scale" selected>Crisp Scale</option>
+        <option value="bounce">Elastic Bounce</option>
+        <option value="pulse">Hover Pulse</option>
+        <option value="none">None</option>
+      </select>
+    </div>
+
+    <div class="settings-control">
+      <label for="icon-shadow">Icon Drop Shadow</label>
+      <input class="settings-range" id="icon-shadow" type="range" min="0" max="28" value="14">
+      <small id="icon-shadow-value">14px</small>
+    </div>
+
+    <div class="settings-control">
+      <label for="app-corner-radius">Icon Corner Roundness</label>
+      <input class="settings-range" id="app-corner-radius" type="range" min="0" max="50" value="30">
+      <small id="app-corner-radius-value">30%</small>
+    </div>
+
+    <div class="settings-control">
+      <label for="app-glow-size">Neon Glow Intensity</label>
+      <input class="settings-range" id="app-glow-size" type="range" min="0" max="24" value="9">
+      <small id="app-glow-size-value">9px</small>
+    </div>
+
+    <div class="settings-control">
+      <label for="app-border-width">Icon Border Thickness</label>
+      <input class="settings-range" id="app-border-width" type="range" min="0" max="3" value="1">
+      <small id="app-border-width-value">1px</small>
+    </div>
+
+    <div class="security-card">
+      <h3>Import Icon Pack &amp; Restore</h3>
+      <p>Import a JSON custom icon mapping ({ "Camera": { "icon": "data:image/...", "color": "#..." } }) or restore defaults.</p>
+      <div class="app-editor-actions">
+        <label class="settings-back" for="import-icon-pack-input">Import Icon JSON</label>
+        <input id="import-icon-pack-input" type="file" accept="application/json" hidden>
+        <button type="button" class="settings-back" id="restore-all-icons-btn">Restore All Icons</button>
+      </div>
+      <p class="security-status" id="icon-pack-import-status">Using built-in SVG icon engine.</p>
+    </div>
+
+    <div class="security-card">
+      <h3>Customize Individual App</h3>
+      <p>Rename an app, tint its border, or upload a custom PNG/SVG icon image for it.</p>
+
+      <div class="app-editor-field">
+        <label for="edit-app-select">Select app</label>
+        <select class="settings-select" id="edit-app-select"></select>
+      </div>
+
+      <div class="app-editor-field">
+        <label for="edit-app-name">Display name</label>
+        <input class="security-input" id="edit-app-name" type="text" maxlength="24" placeholder="App name">
+      </div>
+
+      <div class="app-editor-field">
+        <label for="edit-app-icon">Custom symbol or image data URL</label>
+        <input class="security-input" id="edit-app-icon" type="text" placeholder="Leave blank for icon pack">
+        <label class="settings-back" for="edit-app-image-input" style="display: inline-block; margin-top: 8px;">Upload Custom Icon Image</label>
+        <input id="edit-app-image-input" type="file" accept="image/*" hidden>
+      </div>
+
+      <div class="app-editor-color-row">
+        <div>
+          <label for="edit-app-color">Custom icon color</label>
+          <small>Tint this app's border and glow</small>
+        </div>
+        <div class="app-color-controls">
+          <input id="edit-app-color" type="color" value="#a100ff">
+          <button type="button" class="settings-back" id="edit-app-clear-color">Theme</button>
+        </div>
+      </div>
+
+      <div class="settings-toggle-row app-editor-toggle">
+        <div>
+          <label for="edit-app-favourite">Pin to Home Favourites</label>
+          <small>Include in Home Favourites &amp; ★ Favourites filter</small>
+        </div>
+        <button type="button" class="settings-toggle" id="edit-app-favourite" aria-pressed="false"></button>
+      </div>
+
+      <div class="settings-toggle-row app-editor-toggle">
+        <div>
+          <label for="edit-app-visible">Show in App Drawer</label>
+          <small>Hide or show this app in drawer lists</small>
+        </div>
+        <button type="button" class="settings-toggle active" id="edit-app-visible" aria-pressed="true"></button>
+      </div>
+
+      <div class="app-editor-actions">
+        <button type="button" class="security-button" id="save-custom-app">Save App</button>
+        <button type="button" class="settings-back" id="reset-custom-app">Reset</button>
+      </div>
+      <p class="security-status" id="edit-app-status">Select an app to customize its appearance.</p>
+    </div>
+  </div>
+
+  <!-- 7. WIDGET STUDIO -->
+  <div class="settings-page" id="page-widgets">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">7. Widget Studio</h2>
+
+    <div class="settings-control">
+      <label for="clock-style">Clock Widget Style</label>
+      <select class="settings-select" id="clock-style">
+        <option value="modern">Modern Neon Gradient</option>
+        <option value="editorial">Bold High Contrast</option>
+        <option value="mono">Digital Monospace</option>
+        <option value="compact">Compact Glass Card</option>
+      </select>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-clock-24h">24-hour clock format</label>
+        <small>Switch between 24-hour and 12-hour AM/PM time</small>
+      </div>
+      <button type="button" class="settings-toggle active" id="toggle-clock-24h" aria-pressed="true"></button>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-clock-seconds">Show seconds</label>
+        <small>Display live seconds beside the digital clock</small>
+      </div>
+      <button type="button" class="settings-toggle" id="toggle-clock-seconds" aria-pressed="false"></button>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-widgets-visible">Show Smart Widget Stack</label>
+        <small>Weather, Music, Calendar and Battery widgets on Home</small>
+      </div>
+      <button type="button" class="settings-toggle active" id="toggle-widgets-visible" aria-pressed="true"></button>
+    </div>
+
+    <div class="settings-control">
+      <label for="widget-surface">Widget Surface Material</label>
+      <select class="settings-select" id="widget-surface">
+        <option value="glass">Frosted Glass</option>
+        <option value="holographic">Holographic Iridescent</option>
+        <option value="solid">AMOLED Solid</option>
+      </select>
+    </div>
+
+    <div class="settings-control">
+      <label for="widget-size">Widget Stack Size</label>
+      <select class="settings-select" id="widget-size">
+        <option value="compact">Compact</option>
+        <option value="standard" selected>Standard</option>
+        <option value="large">Large</option>
+      </select>
+    </div>
+
+    <div class="settings-control">
+      <div class="app-editor-color-row" style="margin-top: 0;">
+        <div>
+          <label for="widget-accent-color" style="margin-bottom: 2px;">Custom Widget Border Color</label>
+          <small>Override widget stack highlight outline</small>
+        </div>
+        <div class="app-color-controls">
+          <input class="studio-color-input" id="widget-accent-color" type="color" value="#a100ff">
+          <button type="button" class="settings-back" id="reset-widget-color-btn">Theme</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-control">
+      <label for="widget-transparency">Widget Card Opacity</label>
+      <input class="settings-range" id="widget-transparency" type="range" min="20" max="96" value="72">
+      <small id="widget-transparency-value">72%</small>
+    </div>
+
+    <div class="settings-control">
+      <label for="default-widget">Default Active Widget</label>
+      <select class="settings-select" id="default-widget">
+        <option value="weather">Weather</option>
+        <option value="music">Music Player</option>
+        <option value="calendar">Calendar</option>
+        <option value="battery">Battery &amp; System</option>
+      </select>
+    </div>
+
+    <div class="settings-control">
+      <label for="temp-unit">Weather Temperature Unit</label>
+      <select class="settings-select" id="temp-unit">
+        <option value="C">Celsius (°C)</option>
+        <option value="F">Fahrenheit (°F)</option>
+      </select>
+    </div>
+
+    <div class="security-card">
+      <h3>Active Widgets &amp; Order</h3>
+      <p>Toggle widgets on/off and reorder the Widget Stack tabs shown on Home.</p>
+      <div class="studio-item-list" id="widget-order-list"></div>
+    </div>
+  </div>
+
+  <!-- 8. APP DRAWER STUDIO -->
+  <div class="settings-page" id="page-drawer">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">8. App Drawer Studio</h2>
+
+    <div class="settings-control">
+      <label for="drawer-layout">Drawer Layout</label>
+      <select class="settings-select" id="drawer-layout">
+        <option value="grid">Neon Grid</option>
+        <option value="list">Niagara Vertical List</option>
+        <option value="categories">iPhone Smart Categories</option>
+      </select>
+    </div>
+
+    <div class="settings-control">
+      <label for="drawer-sort">Application Sort Order</label>
+      <select class="settings-select" id="drawer-sort">
+        <option value="name">Alphabetical (A–Z)</option>
+        <option value="category">By Category</option>
+        <option value="recent">Recently Opened First</option>
+      </select>
+    </div>
+
+    <div class="settings-control">
+      <label for="drawer-columns">Grid Columns</label>
+      <select class="settings-select" id="drawer-columns">
+        <option value="3">3 columns</option>
+        <option value="4" selected>4 columns</option>
+        <option value="5">5 columns</option>
+      </select>
+    </div>
+
+    <div class="settings-control">
+      <label for="drawer-icon-size">Drawer Icon Size</label>
+      <input class="settings-range" id="drawer-icon-size" type="range" min="35" max="75" value="48">
+      <small id="drawer-icon-size-value">48px</small>
+    </div>
+  </div>
+
+  <!-- 9. APP WHEEL STUDIO -->
+  <div class="settings-page" id="page-home-screen">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">9. App Wheel Studio</h2>
+
+    <div class="settings-control">
+      <label>App Wheel Style</label>
+      <div class="wheel-style-grid" role="radiogroup" aria-label="App wheel style">
+        <button type="button" class="wheel-style-option" data-wheel-style="classic">
+          <div class="wheel-style-swatch classic" aria-hidden="true">
+            <span class="swatch-ring"></span>
+            <span class="swatch-core">A</span>
+          </div>
+          <strong>Classic Circle</strong>
+          <small>Static neon ring</small>
+        </button>
+
+        <button type="button" class="wheel-style-option" data-wheel-style="rotating">
+          <div class="wheel-style-swatch rotating" aria-hidden="true">
+            <span class="swatch-ring"></span>
+            <span class="swatch-orbit-dot dot-1"></span>
+            <span class="swatch-orbit-dot dot-2"></span>
+            <span class="swatch-core">A</span>
+          </div>
+          <strong>3D Rotating Wheel</strong>
+          <small>3D beveled orbit</small>
+        </button>
+
+        <button type="button" class="wheel-style-option" data-wheel-style="radial">
+          <div class="wheel-style-swatch radial" aria-hidden="true">
+            <span class="swatch-ring"></span>
+            <span class="swatch-node n1"></span>
+            <span class="swatch-node n2"></span>
+            <span class="swatch-node n3"></span>
+            <span class="swatch-core">A</span>
+          </div>
+          <strong>Floating Radial Wheel</strong>
+          <small>Glowing floating nodes</small>
+        </button>
+      </div>
+    </div>
+
+    <div class="settings-control">
+      <div class="app-editor-color-row" style="margin-top: 0;">
+        <div>
+          <label for="wheel-custom-color" style="margin-bottom: 2px;">Custom Wheel Ring Color</label>
+          <small>Override radial wheel ring &amp; center accent</small>
+        </div>
+        <div class="app-color-controls">
+          <input class="studio-color-input" id="wheel-custom-color" type="color" value="#d000ff">
+          <button type="button" class="settings-back" id="reset-wheel-color-btn">Theme</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-control">
+      <label for="wheel-double-tap">Center "A" Double-Tap Shortcut</label>
+      <select class="settings-select" id="wheel-double-tap">
+        <option value="drawer">Open App Drawer</option>
+        <option value="search">Search Apps (Drawer)</option>
+        <option value="music">Play / Pause Music</option>
+        <option value="multitasking">Open Multitasking</option>
+        <option value="notifications">Open Notification Shade</option>
+        <option value="lock">Lock Screen</option>
+        <option value="settings">Open Control Center</option>
+        <option value="none">Disabled</option>
+      </select>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-haptics">Wheel &amp; Gesture Haptic Feedback</label>
+        <small>Vibrate subtly on supported Android phones</small>
+      </div>
+      <button type="button" class="settings-toggle active" id="toggle-haptics" aria-pressed="true"></button>
+    </div>
+
+    <div class="settings-control">
+      <label>First Wheel (Favourites) — Max 6 Apps</label>
+      <div class="wheel-slots-editor" id="favourites-slots-editor"></div>
+      <div style="display: flex; gap: 8px; margin-top: 10px;">
+        <button type="button" class="settings-back" id="add-favourite-slot-btn">+ Add App</button>
+        <button type="button" class="settings-back" id="reset-favourites-btn">Reset Favourites</button>
+      </div>
+    </div>
+
+    <div class="settings-control">
+      <label>Second Wheel (App Wheel) — No Maximum</label>
+      <div class="wheel-slots-editor" id="wheel-slots-editor"></div>
+      <div style="display: flex; gap: 8px; margin-top: 10px;">
+        <button type="button" class="settings-back" id="add-wheel-slot-btn">+ Add App to Wheel</button>
+        <button type="button" class="settings-back" id="reset-wheel-slots">Reset Wheel</button>
+      </div>
+    </div>
+
+    <div class="settings-control">
+      <label for="home-icon-size">Home Icon Size</label>
+      <input class="settings-range" id="home-icon-size" type="range" min="30" max="72" value="46">
+      <small id="home-icon-size-value">46px</small>
+    </div>
+    <div class="settings-control">
+      <label for="wheel-size">App Wheel Size</label>
+      <input class="settings-range" id="wheel-size" type="range" min="200" max="350" value="270">
+      <small id="wheel-size-value">270px</small>
+    </div>
+    <div class="settings-control">
+      <label for="dock-count">Dock App Count</label>
+      <select class="settings-select" id="dock-count">
+        <option value="4">4 apps</option>
+        <option value="5" selected>5 apps</option>
+        <option value="6">6 apps</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 10. GESTURE STUDIO -->
+  <div class="settings-page" id="page-gestures">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">10. Gesture Studio</h2>
+    <p class="settings-description" style="margin-bottom: 4px;">Assign real launcher actions to Home screen gestures.</p>
+
+    <div class="settings-control">
+      <label for="gesture-swipe-up">Swipe Up</label>
+      <select class="settings-select gesture-select" id="gesture-swipe-up" data-default-action="drawer"></select>
+    </div>
+    <div class="settings-control">
+      <label for="gesture-swipe-down">Swipe Down</label>
+      <select class="settings-select gesture-select" id="gesture-swipe-down" data-default-action="notifications"></select>
+    </div>
+    <div class="settings-control">
+      <label for="gesture-swipe-left">Swipe Left</label>
+      <select class="settings-select gesture-select" id="gesture-swipe-left" data-default-action="sidebar"></select>
+    </div>
+    <div class="settings-control">
+      <label for="gesture-swipe-right">Swipe Right</label>
+      <select class="settings-select gesture-select" id="gesture-swipe-right" data-default-action="multitasking"></select>
+    </div>
+    <div class="settings-control">
+      <label for="gesture-double-tap">Double Tap Home Canvas</label>
+      <select class="settings-select gesture-select" id="gesture-double-tap" data-default-action="lock"></select>
+    </div>
+    <div class="settings-control">
+      <label for="gesture-long-press">Long Press Home Canvas</label>
+      <select class="settings-select gesture-select" id="gesture-long-press" data-default-action="customize"></select>
+    </div>
+    <div class="settings-control">
+      <label for="gesture-two-finger">Two-Finger Swipe</label>
+      <select class="settings-select gesture-select" id="gesture-two-finger" data-default-action="private-space"></select>
+    </div>
+    <button type="button" class="settings-back" id="reset-gestures-btn">Reset Default Gestures</button>
+  </div>
+
+  <!-- 11. MUSIC STUDIO -->
+  <div class="settings-page" id="page-music">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">11. Music Studio</h2>
+
+    <div class="settings-control">
+      <label for="music-style">Music Player Widget Layout</label>
+      <select class="settings-select" id="music-style">
+        <option value="compact">Compact Bar</option>
+        <option value="expanded" selected>Expanded Album Card</option>
+      </select>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-music-native-sync">Auto-Sync Android MediaSession</label>
+        <small>Read now-playing track info and artwork when native Android bridge is connected</small>
+      </div>
+      <button type="button" class="settings-toggle active" id="toggle-music-native-sync" aria-pressed="true"></button>
+    </div>
+
+    <div class="settings-info-card" id="music-capability-info">
+      In Browser Preview, the player supports real local MP3/audio files with ID3v2 album artwork plus an interactive synth preview. System-wide playback metadata (Spotify/YouTube Music) connects automatically via AlexAndroid in a native Android APK.
+    </div>
+  </div>
+
+  <!-- 12. SIDEBAR STUDIO -->
+  <div class="settings-page" id="page-sidebar">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">12. Sidebar Studio</h2>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-sidebar-enabled">Show Floating Quick Sidebar</label>
+        <small>Edge handle for instant pinned &amp; recent apps anywhere on Home</small>
+      </div>
+      <button type="button" class="settings-toggle active" id="toggle-sidebar-enabled" aria-pressed="true"></button>
+    </div>
+
+    <div class="settings-control">
+      <label for="sidebar-side">Screen Edge Position</label>
+      <select class="settings-select" id="sidebar-side">
+        <option value="right">Right Edge</option>
+        <option value="left">Left Edge</option>
+      </select>
+    </div>
+
+    <div class="settings-control">
+      <label for="sidebar-alpha">Sidebar Transparency</label>
+      <input class="settings-range" id="sidebar-alpha" type="range" min="35" max="100" value="94">
+      <small id="sidebar-alpha-value">94%</small>
+    </div>
+
+    <div class="security-card">
+      <h3>Pinned Sidebar Apps (up to 5)</h3>
+      <p>Choose which apps appear in your floating quick sidebar.</p>
+      <div class="checklist-grid" id="sidebar-apps-checklist"></div>
+    </div>
+  </div>
+
+  <!-- 13. PRIVACY CENTER -->
+  <div class="settings-page" id="page-privacy">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">13. Privacy Center</h2>
+
+    <div class="security-card">
+      <h3>Launcher Lock (Salted SHA-256)</h3>
+      <p>Protect Alex Launcher and locked apps with a locally salted &amp; hashed PIN or password.</p>
+      <select class="settings-select" id="lock-type-select" style="margin-top: 8px;">
+        <option value="pin">Numeric PIN (4–8 digits)</option>
+        <option value="password">Password (4+ chars)</option>
+      </select>
+      <input class="security-input" id="launcher-pin" type="password" placeholder="Enter new PIN or password">
+      <input class="security-input" id="launcher-pin-confirm" type="password" placeholder="Confirm PIN or password">
+      <div class="app-editor-actions">
+        <button type="button" class="security-button" id="save-launcher-pin">Save Lock</button>
+        <button type="button" class="settings-back" id="remove-launcher-pin">Remove</button>
+      </div>
+      <p class="security-status" id="pin-status">No launcher lock configured.</p>
+    </div>
+
+    <div class="settings-control">
+      <label for="lock-timeout">Lock Timeout</label>
+      <select class="settings-select" id="lock-timeout">
+        <option value="immediate">Immediate (On Launcher Open)</option>
+        <option value="30">After 30 seconds idle</option>
+        <option value="60">After 1 minute idle</option>
+        <option value="300">After 5 minutes idle</option>
+        <option value="off" selected>Manual Lock Only</option>
+      </select>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-biometric">Biometric Unlock</label>
+        <small id="biometric-bridge-note">Requires native Android BiometricPrompt bridge</small>
+      </div>
+      <button type="button" class="settings-toggle" id="toggle-biometric" aria-pressed="false"></button>
+    </div>
+
+    <div class="security-card">
+      <h3>App Lock</h3>
+      <p>Require your launcher PIN/password before opening selected apps inside Alex Launcher.</p>
+      <div class="checklist-grid" id="app-lock-checklist"></div>
+    </div>
+
+    <div class="security-card">
+      <h3>Private Home Space</h3>
+      <p>Mark apps as Private so you can switch between your standard layout and Private Space.</p>
+      <div class="settings-toggle-row app-editor-toggle">
+        <div>
+          <label for="toggle-private-home">Activate Private Space Now</label>
+          <small>Filter Home &amp; Drawer to Private Space view</small>
+        </div>
+        <button type="button" class="settings-toggle" id="toggle-private-home" aria-pressed="false"></button>
+      </div>
+      <div class="checklist-grid" id="private-apps-checklist" style="margin-top: 10px;"></div>
+    </div>
+
+    <div class="security-card">
+      <h3>Hidden Applications</h3>
+      <p>Apps hidden from the App Drawer can be restored here.</p>
+      <div class="hidden-apps-list" id="hidden-apps-list"></div>
+      <div class="settings-info-card" style="margin-top: 10px;">
+        Honest Security Notice: Hiding an icon only removes it from Alex Launcher views. It does not encrypt, uninstall, or block access to the Android app outside the launcher without native Android device owner / Work Profile integration.
+      </div>
+    </div>
+  </div>
+
+  <!-- 14. NOTIFICATION CENTER -->
+  <div class="settings-page" id="page-notifications">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">14. Notification Center</h2>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-notif-badges">Show Notification Badges</label>
+        <small>Display live notification badges on icons when Android bridge provides alerts</small>
+      </div>
+      <button type="button" class="settings-toggle active" id="toggle-notif-badges" aria-pressed="true"></button>
+    </div>
+
+    <div class="settings-control">
+      <label for="notif-badge-style">Badge Appearance</label>
+      <select class="settings-select" id="notif-badge-style">
+        <option value="count">Numeric Count Pill</option>
+        <option value="dot">Minimal Glowing Dot</option>
+      </select>
+    </div>
+
+    <div class="settings-control">
+      <div class="app-editor-color-row" style="margin-top: 0;">
+        <div>
+          <label for="notif-badge-color" style="margin-bottom: 2px;">Badge Glow Color</label>
+          <small>Customize unread notification indicator color</small>
+        </div>
+        <input class="studio-color-input" id="notif-badge-color" type="color" value="#d000ff">
+      </div>
+    </div>
+
+    <div class="security-card">
+      <h3>Notification Listener Access</h3>
+      <p id="notif-bridge-status">Checking Android NotificationListenerService bridge...</p>
+      <div class="settings-toggle-row app-editor-toggle">
+        <div>
+          <label for="toggle-notif-consent">Explicit Notification Reading Consent</label>
+          <small>Allow Alex Launcher to read unread counts when granted by Android</small>
+        </div>
+        <button type="button" class="settings-toggle active" id="toggle-notif-consent" aria-pressed="true"></button>
+      </div>
+      <button type="button" class="security-button" id="request-notif-access-btn">Request Android Notification Access</button>
+    </div>
+
+    <div class="security-card">
+      <h3>Per-App Badge Mute</h3>
+      <p>Checked apps suppress notification badges on Home &amp; Drawer.</p>
+      <div class="checklist-grid" id="notif-muted-checklist"></div>
+    </div>
+  </div>
+
+  <!-- 15. BACKUP AND RESTORE -->
+  <div class="settings-page" id="page-backup">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">15. Backup and Restore</h2>
+
+    <div class="security-card">
+      <h3>Quick Local Snapshot</h3>
+      <p>Save a local restore point before experimenting with layouts or themes.</p>
+      <div class="app-editor-actions">
+        <button type="button" class="security-button" id="save-snapshot-btn">Save Snapshot</button>
+        <button type="button" class="settings-back" id="stage-snapshot-restore-btn">Restore Snapshot</button>
+      </div>
+      <p class="security-status" id="snapshot-status">Check snapshot availability.</p>
+    </div>
+
+    <div class="security-card">
+      <h3>Export &amp; Import Backup File</h3>
+      <p>Export all themes, profiles, wheel slots, widgets, and preferences to JSON, or import with confirmation.</p>
+      <button type="button" class="security-button" id="export-backup-btn">Export Backup JSON</button>
+      <label class="settings-back" for="import-backup-input" style="display: inline-block; margin-top: 10px;">Select Backup JSON File</label>
+      <input id="import-backup-input" type="file" accept="application/json" hidden>
+      <p class="security-status" id="backup-status">Ready to export or stage a backup file.</p>
+
+      <div class="backup-confirm-box" id="backup-confirm-box" hidden>
+        <p id="backup-confirm-text">Confirm overwrite?</p>
+        <div class="app-editor-actions">
+          <button type="button" class="security-button" id="backup-confirm-apply">Confirm Overwrite</button>
+          <button type="button" class="settings-back" id="backup-confirm-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16. PROFILE MANAGER -->
+  <div class="settings-page" id="page-profiles">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">16. Profile Manager</h2>
+
+    <div class="security-card">
+      <h3>Create Custom Profile</h3>
+      <p>Save your current wallpaper, widgets, theme, icons, and layout as a switchable profile.</p>
+      <input class="security-input" id="new-profile-name" type="text" maxlength="20" placeholder="e.g. Weekend, Travel...">
+      <button type="button" class="security-button" id="create-profile-btn">Create From Current Setup</button>
+      <p class="security-status" id="profile-status">Active profile: Personal</p>
+    </div>
+
+    <div class="studio-item-list" id="profiles-list"></div>
+  </div>
+
+  <!-- 17. PERFORMANCE CENTER -->
+  <div class="settings-page" id="page-animations">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">17. Performance Center</h2>
+
+    <div class="settings-control">
+      <label for="animation-speed">UI Transition Speed</label>
+      <select class="settings-select" id="animation-speed">
+        <option value="fast">Fast (0.15s)</option>
+        <option value="normal" selected>Normal (0.28s)</option>
+        <option value="slow">Slow Cinematic (0.55s)</option>
+      </select>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-reduce-motion">Reduce Motion Accessibility</label>
+        <small>Eliminate parallax shifts, ambient orbit &amp; floating animations</small>
+      </div>
+      <button type="button" class="settings-toggle" id="toggle-reduce-motion" aria-pressed="false"></button>
+    </div>
+
+    <div class="settings-control">
+      <label for="performance-mode">Lightweight / Low-RAM Mode</label>
+      <select class="settings-select" id="performance-mode">
+        <option value="standard">Standard Glass &amp; 3D Parallax</option>
+        <option value="low">Low-RAM / Battery Saver (Recommended on 2–3 GB devices)</option>
+      </select>
+      <small>Disables blur shaders, canvas particles, parallax layers, and continuous wheel orbit.</small>
+    </div>
+
+    <div class="settings-control settings-toggle-row">
+      <div>
+        <label for="toggle-perf-particles">Canvas Particle Rendering</label>
+        <small>Turn off particles to minimize GPU/CPU wakeups</small>
+      </div>
+      <button type="button" class="settings-toggle" id="toggle-perf-particles" aria-pressed="false"></button>
+    </div>
+
+    <div class="security-card">
+      <h3>Real Hardware &amp; Memory Diagnostics</h3>
+      <p>Live hardware metrics reported by your browser engine (no fake RAM boosting).</p>
+      <div class="capability-list" id="perf-diagnostics-list"></div>
+      <button type="button" class="settings-back" id="disable-widgets-btn" style="margin-top: 10px;">Disable Home Widget Stack to Save RAM</button>
+    </div>
+  </div>
+
+  <!-- ABOUT & ANDROID INTEGRATION -->
+  <div class="settings-page" id="page-about">
+    <button type="button" class="settings-back">← Back</button>
+    <h2 class="settings-page-title">About &amp; Android Integration</h2>
+    <div class="settings-info-card">
+      <h3>Alex Launcher</h3>
+      <p>Version 3.0.0 · Premium Ultimate Edition (AMOLED)</p>
+      <p>Built on the preserved Alex Launcher architecture with Capacitor Android support.</p>
+      <button type="button" class="settings-btn primary" id="btn-set-default-launcher" style="margin-top: 14px; width: 100%;">
+        Set as Default Phone Launcher
+      </button>
+      <p id="default-launcher-status" style="font-size: 12px; color: var(--alpha-text, #d59bff); margin-top: 8px; margin-bottom: 0;"></p>
+    </div>
+    <div class="security-card">
+      <h3>Runtime Capability Check</h3>
+      <p>Honest live status of browser APIs vs native Android launcher hooks:</p>
+      <div class="capability-list" id="capability-list"></div>
+    </div>
+  </div>
+
+  <footer class="settings-footer">
+    Alex Launcher • Premium Ultimate Edition
+  </footer>
+
+</section>
+
+</body>
+</html>

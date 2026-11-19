@@ -1,8 +1,9 @@
-// ALEX LAUNCHER - HOME SCREEN, WIDGETS, WHEEL, GESTURES & STUDIO ENGINE
 import {
   APP_CATALOG,
   getAppCatalogEntry,
-  renderAppIconInto
+  renderAppIconInto,
+  registerInstalledApps,
+  getRegisteredAppCatalog
 } from "./icons.js";
 import {
   getRuntimeCapabilities,
@@ -158,26 +159,33 @@ function getEffectiveApps(includeHidden = false) {
   const privateMode = isPrivateModeActive();
   const nativeResult = getNativeInstalledApps();
 
+  if (nativeResult.apps && nativeResult.apps.length > 0) {
+    registerInstalledApps(nativeResult.apps);
+  }
+
   const sourceList =
     nativeResult.apps && nativeResult.apps.length > 0
       ? nativeResult.apps.map(item => ({
           name: item.name || item.label || "App",
           category: item.category || "Tools",
           packageName: item.packageName || "",
-          webUrl: null,
-          nativeIconUrl: item.icon || ""
+          webUrl: item.webUrl || null,
+          nativeIconUrl: item.icon || item.nativeIconUrl || ""
         }))
-      : APP_CATALOG;
+      : getRegisteredAppCatalog();
 
   return sourceList
     .map(app => {
       const custom = customMap[app.name];
       const isPrivate = privateSet.has(app.name);
+      const catalogEntry = getAppCatalogEntry(app.name);
       return {
         ...app,
         baseName: app.name,
         name: custom?.name || app.name,
-        customGlyph: custom?.icon || "",
+        packageName: app.packageName || catalogEntry.packageName || "",
+        nativeIconUrl: app.nativeIconUrl || catalogEntry.nativeIconUrl || "",
+        customGlyph: custom?.icon || app.nativeIconUrl || catalogEntry.nativeIconUrl || "",
         color: custom?.color || "",
         hidden: custom?.hidden === true,
         isFavourite: favSet.has(app.name),
@@ -848,7 +856,6 @@ function executeAppLaunch(appName, displayLabel) {
   }
   if (appName === "Music") {
     selectWidgetTab("music");
-    showToast("Opened Music widget");
     return;
   }
   if (appName === "Weather") {
@@ -860,39 +867,28 @@ function executeAppLaunch(appName, displayLabel) {
     selectWidgetTab("calendar");
   }
 
-  const entry = getAppCatalogEntry(appName);
+  const effectiveApps = getEffectiveApps(true);
+  const matchedApp = effectiveApps.find(a => a.name === appName || a.baseName === appName);
+  const catalogEntry = getAppCatalogEntry(appName);
+  const entry = {
+    ...catalogEntry,
+    packageName: matchedApp?.packageName || catalogEntry.packageName || "",
+    webUrl: matchedApp?.webUrl || catalogEntry.webUrl || null
+  };
+
   const result = launchAndroidOrWebApp(entry, displayLabel || appName);
-  if (result.mode === "native" || result.mode === "internal" || result.mode === "protocol") {
-    showToast(result.message);
+  if (result.mode === "native") {
+    // Native Android app launched directly - no modal, no toast
     return;
   }
-
+  if (result.mode === "internal" || result.mode === "protocol") {
+    return;
+  }
   if (result.mode === "web-intent" && result.url) {
-    openLauncherModal(displayLabel || appName, (body, close) => {
-      const p = document.createElement("p");
-      p.textContent =
-        `Running in Browser Preview. Native Android launch uses package "${entry.packageName}", or open the web app below:`;
-      const actions = document.createElement("div");
-      actions.className = "modal-actions";
-      const cancelBtn = document.createElement("button");
-      cancelBtn.type = "button";
-      cancelBtn.className = "modal-btn";
-      cancelBtn.textContent = "Close";
-      cancelBtn.addEventListener("click", close);
-
-      const openLink = document.createElement("a");
-      openLink.className = "modal-btn primary";
-      openLink.href = result.url;
-      openLink.target = "_blank";
-      openLink.rel = "noopener noreferrer";
-      openLink.textContent = `Open ${displayLabel || appName}`;
-      openLink.addEventListener("click", () => close());
-      actions.append(cancelBtn, openLink);
-      body.append(p, actions);
-    });
+    window.open(result.url, "_blank", "noopener,noreferrer");
     return;
   }
-  showToast(result.message);
+  showToast(`Opening ${displayLabel || appName}...`);
 }
 
 function handleAppLaunch(appName, displayLabel) {
@@ -2059,7 +2055,8 @@ function displayApps(options = {}) {
   const { forceFlat = false } = options;
   const drawerGrid = document.getElementById("drawer-grid");
   const drawerHeading = document.getElementById("drawer-heading");
-  const searchText = "";
+  const searchInput = document.getElementById("drawer-search");
+  const searchText = (searchInput?.value || "").toLowerCase().trim();
   const visibleApps = getEffectiveApps(false);
   const sortMode = localStorage.getItem("alex-setting-drawer-sort") || "name";
   const recentOrder = loadJsonStorage("alex-recent-apps", []);
@@ -2095,7 +2092,7 @@ function displayApps(options = {}) {
     drawerHeading.textContent = isPrivateModeActive()
       ? "Private Space"
       : activeCategory === "All"
-      ? "All Applications"
+      ? (searchText ? `Search results for "${searchText}"` : "All Applications")
       : activeCategory === "Favourites"
       ? "Favourite Applications"
       : `${activeCategory} Apps`;
@@ -2142,7 +2139,13 @@ function displayApps(options = {}) {
     if (drawerHeading) drawerHeading.textContent = isPrivateModeActive() ? "Private Library" : "App Library";
     const groups = new Map();
     groups.set("Suggestions", getRecentSuggestions());
-    ["Tools", "Media", "Social", "Productivity", "Education", "Games"].forEach(cat => {
+    const categoryList = ["Tools", "Media", "Social", "Productivity", "Education", "Games"];
+    filtered.forEach(app => {
+      if (app.category && !categoryList.includes(app.category)) {
+        categoryList.push(app.category);
+      }
+    });
+    categoryList.forEach(cat => {
       const catApps = filtered.filter(app => app.category === cat);
       if (catApps.length > 0) groups.set(cat, catApps);
     });
@@ -2218,6 +2221,7 @@ document.addEventListener("DOMContentLoaded", () => {
   appsButton?.addEventListener("click", () => openDrawer(""));
   dockButton?.addEventListener("click", () => openDrawer(""));
   drawerClose?.addEventListener("click", closeDrawer);
+  document.getElementById("drawer-search")?.addEventListener("input", () => displayApps());
   manageBtn?.addEventListener("click", () => {
     manageAppsMode = !manageAppsMode;
     manageBtn.setAttribute("aria-pressed", manageAppsMode ? "true" : "false");

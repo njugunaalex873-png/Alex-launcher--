@@ -1,0 +1,6 @@
+{
+	"appId": "com.alexlauncher.app",
+	"appName": "Alex Launcher",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}

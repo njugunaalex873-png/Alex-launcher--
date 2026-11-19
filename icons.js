@@ -305,18 +305,80 @@ function getAppGlyphMarkup(baseName, uid, pack) {
   }
 }
 
+const INSTALLED_NATIVE_APPS_MAP = new Map();
+
+export function registerInstalledApps(apps) {
+  INSTALLED_NATIVE_APPS_MAP.clear();
+  if (Array.isArray(apps)) {
+    apps.forEach(app => {
+      const key = (app.name || app.label || "").trim();
+      if (key) {
+        const item = {
+          name: key,
+          category: app.category || "Tools",
+          packageName: app.packageName || "",
+          nativeIconUrl: app.icon || "",
+          webUrl: null,
+          accent: "#a100ff",
+          bg1: "#28003f",
+          bg2: "#100018"
+        };
+        INSTALLED_NATIVE_APPS_MAP.set(key, item);
+        if (app.packageName) {
+          INSTALLED_NATIVE_APPS_MAP.set(app.packageName, item);
+        }
+      }
+    });
+  }
+}
+
+export function getRegisteredAppCatalog() {
+  if (INSTALLED_NATIVE_APPS_MAP.size > 0) {
+    const seen = new Set();
+    const result = [];
+    INSTALLED_NATIVE_APPS_MAP.forEach(item => {
+      if (!seen.has(item.name)) {
+        seen.add(item.name);
+        result.push(item);
+      }
+    });
+    return result;
+  }
+  return APP_CATALOG;
+}
+
 export function getAppCatalogEntry(baseName) {
-  return (
-    APP_CATALOG.find(item => item.name === baseName) || {
-      name: baseName,
+  if (!baseName) {
+    return {
+      name: "",
       category: "Tools",
       packageName: "",
       webUrl: null,
       accent: "#a100ff",
       bg1: "#28003f",
       bg2: "#100018"
-    }
+    };
+  }
+  if (INSTALLED_NATIVE_APPS_MAP.has(baseName)) {
+    return INSTALLED_NATIVE_APPS_MAP.get(baseName);
+  }
+  const clean = baseName.trim().toLowerCase();
+  for (const [key, val] of INSTALLED_NATIVE_APPS_MAP.entries()) {
+    if (key.toLowerCase() === clean) return val;
+  }
+  const fromCatalog = APP_CATALOG.find(
+    item => item.name.toLowerCase() === clean || item.packageName === baseName
   );
+  if (fromCatalog) return fromCatalog;
+  return {
+    name: baseName,
+    category: "Tools",
+    packageName: "",
+    webUrl: null,
+    accent: "#a100ff",
+    bg1: "#28003f",
+    bg2: "#100018"
+  };
 }
 
 export function createAppIconMarkup(baseName, customIconOverride = "", packOverride = null) {
@@ -339,9 +401,17 @@ export function createAppIconMarkup(baseName, customIconOverride = "", packOverr
     return span;
   }
 
+  const entry = getAppCatalogEntry(baseName);
+  if (entry && entry.nativeIconUrl) {
+    const img = document.createElement("img");
+    img.src = entry.nativeIconUrl;
+    img.alt = baseName || "App icon";
+    img.className = "custom-imported-icon";
+    return img;
+  }
+
   const pack =
     packOverride || localStorage.getItem("alex-icon-pack") || "vivid";
-  const entry = getAppCatalogEntry(baseName);
   const uid = `alex_ico_${++svgUidCounter}`;
 
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");

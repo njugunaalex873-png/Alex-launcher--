@@ -254,12 +254,13 @@ export function launchAndroidOrWebApp(entry, displayLabel) {
   if (
     window.AlexAndroid &&
     typeof window.AlexAndroid.launchApp === "function" &&
+    entry &&
     entry.packageName
   ) {
     try {
       const launched = window.AlexAndroid.launchApp(entry.packageName);
       if (launched !== false) {
-        return { mode: "native", message: `Launching ${displayLabel}` };
+        return { mode: "native", message: `Opening ${displayLabel}` };
       }
     } catch {
       // Fall through to web intent
@@ -267,25 +268,25 @@ export function launchAndroidOrWebApp(entry, displayLabel) {
   }
 
   // 2. Real protocol / web destinations where supported
-  if (entry.webUrl) {
+  if (entry && entry.webUrl) {
     if (entry.webUrl.startsWith("./")) {
       window.location.href = entry.webUrl;
       return { mode: "internal", message: `Opening ${displayLabel}` };
     }
     if (entry.webUrl.startsWith("tel:") || entry.webUrl.startsWith("sms:") || entry.webUrl.startsWith("mailto:")) {
       window.location.href = entry.webUrl;
-      return { mode: "protocol", message: `Opening ${displayLabel} handler...` };
+      return { mode: "protocol", message: `Opening ${displayLabel}` };
     }
     return {
       mode: "web-intent",
       url: entry.webUrl,
-      message: `${displayLabel}: Browser preview ready (tap Open Web App or connect Android APK bridge for native launch)`
+      message: `Opening ${displayLabel}`
     };
   }
 
   return {
     mode: "preview",
-    message: `${displayLabel} requires native Android package launch (${entry.packageName || "APK"})`
+    message: `Opening ${displayLabel}`
   };
 }
 

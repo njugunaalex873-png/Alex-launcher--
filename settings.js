@@ -1,7 +1,13 @@
 // ALEX LAUNCHER - PREMIUM CONTROL CENTER
-import { APP_CATALOG, renderAppIconInto } from "./icons.js";
+import {
+  APP_CATALOG,
+  renderAppIconInto,
+  getRegisteredAppCatalog,
+  registerInstalledApps
+} from "./icons.js";
 import {
   getRuntimeCapabilities,
+  getNativeInstalledApps,
   hashLauncherSecret,
   requestNativeNotificationAccess
 } from "./android-bridge.js";
@@ -176,6 +182,11 @@ function applyDynamicCustomThemeVars(themeObj, root) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const nativeResult = getNativeInstalledApps();
+  if (nativeResult.apps && nativeResult.apps.length > 0) {
+    registerInstalledApps(nativeResult.apps);
+  }
+
   const root = document.documentElement;
   const settingsHome = document.getElementById("settings-home");
   const pages = document.querySelectorAll(".settings-page");
@@ -510,7 +521,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const select = document.createElement("select");
       select.className = "settings-select";
-      APP_CATALOG.forEach(app => {
+      getRegisteredAppCatalog().forEach(app => {
         const opt = document.createElement("option");
         opt.value = app.name;
         opt.textContent = app.name;
@@ -587,7 +598,7 @@ document.addEventListener("DOMContentLoaded", () => {
       drawerOpt.textContent = "App Drawer (▦)";
       select.appendChild(drawerOpt);
 
-      APP_CATALOG.forEach(app => {
+      getRegisteredAppCatalog().forEach(app => {
         const opt = document.createElement("option");
         opt.value = app.name;
         opt.textContent = app.name;
@@ -940,7 +951,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let editorCustomColor = "";
 
   function populateAppEditorFields(appName) {
-    const base = APP_CATALOG.find(a => a.name === appName);
+    const base = getRegisteredAppCatalog().find(a => a.name === appName);
     if (!base) return;
     const customMap = loadCustomAppsMap();
     const custom = customMap[appName] || {};
@@ -971,7 +982,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (editAppSelect) {
-    APP_CATALOG.forEach(app => {
+    getRegisteredAppCatalog().forEach(app => {
       const opt = document.createElement("option");
       opt.value = app.name;
       opt.textContent = `${app.name} (${app.category})`;
@@ -1025,7 +1036,7 @@ document.addEventListener("DOMContentLoaded", () => {
   saveCustomAppBtn?.addEventListener("click", () => {
     if (!editAppSelect) return;
     const baseName = editAppSelect.value;
-    const base = APP_CATALOG.find(a => a.name === baseName);
+    const base = getRegisteredAppCatalog().find(a => a.name === baseName);
     if (!base) return;
     const customMap = loadCustomAppsMap();
     const nextName = (editAppName?.value || "").trim() || base.name;
@@ -1168,7 +1179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const activeSet = new Set(Array.isArray(saved) ? saved : DEFAULT_SIDEBAR_APPS);
     grid.innerHTML = "";
 
-    APP_CATALOG.forEach(app => {
+    getRegisteredAppCatalog().forEach(app => {
       const label = document.createElement("label");
       label.className = "checklist-pill";
       const cb = document.createElement("input");
@@ -1250,7 +1261,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (lockGrid) {
       lockGrid.innerHTML = "";
-      APP_CATALOG.forEach(app => {
+      getRegisteredAppCatalog().forEach(app => {
         const label = document.createElement("label");
         label.className = "checklist-pill";
         const cb = document.createElement("input");
@@ -1270,7 +1281,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (privGrid) {
       privGrid.innerHTML = "";
-      APP_CATALOG.forEach(app => {
+      getRegisteredAppCatalog().forEach(app => {
         const label = document.createElement("label");
         label.className = "checklist-pill";
         const cb = document.createElement("input");
@@ -1352,7 +1363,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!mutedGrid) return;
     const mutedSet = new Set(loadJson("alex-notif-muted-apps", []));
     mutedGrid.innerHTML = "";
-    APP_CATALOG.forEach(app => {
+    getRegisteredAppCatalog().forEach(app => {
       const label = document.createElement("label");
       label.className = "checklist-pill";
       const cb = document.createElement("input");
@@ -1743,4 +1754,19 @@ document.addEventListener("DOMContentLoaded", () => {
       listEl.appendChild(row);
     });
   }
+
+  // DEFAULT LAUNCHER ACTION
+  document.getElementById("btn-set-default-launcher")?.addEventListener("click", () => {
+    const statusEl = document.getElementById("default-launcher-status");
+    if (window.AlexAndroid && typeof window.AlexAndroid.openHomeSettings === "function") {
+      const opened = window.AlexAndroid.openHomeSettings();
+      if (opened) {
+        if (statusEl) statusEl.textContent = "Opening Android Default Apps settings...";
+        return;
+      }
+    }
+    if (statusEl) {
+      statusEl.textContent = "To set as default on your phone: Open Android Settings → Apps → Default Apps → Home App → choose Alex Launcher.";
+    }
+  });
 });
