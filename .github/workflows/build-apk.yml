@@ -1,61 +1,60 @@
 name: Alex Launcher APK Build
 
 'on':
-push:
-branches:
-- main
-workflow_dispatch:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-build:
-runs-on: ubuntu-latest
-steps:
-- name: Checkout repository
-uses: actions/checkout@v4
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  - name: Setup Node.js
-    uses: actions/setup-node@v4
-    with:
-      node-version: 22
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
 
-  - name: Setup Java
-    uses: actions/setup-java@v4
-    with:
-      distribution: temurin
-      java-version: '21'
+      - name: Android SDK
+        uses: android-actions/setup-android@v3
 
-  - name: Setup Android SDK
-    uses: android-actions/setup-android@v3
+      - name: Install dependencies
+        run: npm ci
 
-  - name: Install dependencies
-    run: npm ci
+      - name: Build web app
+        run: npm run build
 
-  - name: Build web application
-    run: npm run build
+      - name: Prepare Android
+        run: |
+          if [ -d android ]; then
+            npx cap sync android
+          else
+            npx cap add android
+          fi
 
-  - name: Prepare Android
-    run: |
-      if [ -d android ]; then
-        npx cap sync android
-      else
-        npx cap add android
-      fi
+      - name: Patch launcher manifest
+        run: node scripts/patch-android.js
 
-  - name: Patch launcher manifest
-    run: node scripts/patch-android.js
+      - name: Build APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
 
-  - name: Build Android APK
-    run: |
-      cd android
-      chmod +x gradlew
-      ./gradlew assembleDebug
+      - name: Verify APK
+        run: test -f android/app/build/outputs/apk/debug/app-debug.apk
 
-  - name: Verify APK
-    run: test -f android/app/build/outputs/apk/debug/app-debug.apk
-
-  - name: Upload APK
-    uses: actions/upload-artifact@v4
-    with:
-      name: alex-launcher-debug-apk
-      path: android/app/build/outputs/apk/debug/app-debug.apk
-      if-no-files-found: error
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: alex-launcher-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
