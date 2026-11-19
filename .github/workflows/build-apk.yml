@@ -25,11 +25,13 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Android SDK
+            - name: Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          accept-android-sdk-licenses: false
 
       - name: Accept Android SDK licenses
-        run: yes | sdkmanager --licenses || true
+        run: yes | sdkmanager --licenses
 
       - name: Install dependencies
         run: npm ci
@@ -47,7 +49,6 @@ jobs:
 
       - name: Patch launcher manifest
         run: node scripts/patch-android.js
-
       - name: Build APK
         run: |
           cd android
