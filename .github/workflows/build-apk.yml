@@ -1,29 +1,21 @@
-name: Build Alex Launcher Android APK
+name: Alex Launcher APK Build
 
-on:
-push:
-branches: ["main", "master"]
-pull_request:
-branches: ["main", "master"]
-workflow_dispatch:
-
-permissions:
-contents: read
+on: [push, workflow_dispatch]
 
 jobs:
 build:
 runs-on: ubuntu-latest
 
 steps:
-  - name: Checkout Repository
+  - name: Checkout repository
     uses: actions/checkout@v4
 
-  - name: Set up Node.js
+  - name: Setup Node.js
     uses: actions/setup-node@v4
     with:
       node-version: 22
 
-  - name: Set up Java
+  - name: Setup Java
     uses: actions/setup-java@v4
     with:
       distribution: temurin
@@ -32,13 +24,13 @@ steps:
   - name: Setup Android SDK
     uses: android-actions/setup-android@v3
 
-  - name: Install Dependencies
+  - name: Install dependencies
     run: npm ci
 
-  - name: Build Web App
+  - name: Build web application
     run: npm run build
 
-  - name: Add or Sync Capacitor Android
+  - name: Prepare Android
     run: |
       if [ -d android ]; then
         npx cap sync android
@@ -46,23 +38,19 @@ steps:
         npx cap add android
       fi
 
-  - name: Patch Android Manifest for Home Launcher
+  - name: Patch launcher manifest
     run: node scripts/patch-android.js
 
-  - name: Verify Android Launcher Manifest
-    run: |
-      grep -E "android.intent.category.HOME|android.intent.action.MAIN" android/app/src/main/AndroidManifest.xml
-
-  - name: Build Debug APK
+  - name: Build Android APK
     run: |
       cd android
       chmod +x gradlew
       ./gradlew assembleDebug
 
-  - name: Verify APK Exists
+  - name: Verify APK
     run: test -f android/app/build/outputs/apk/debug/app-debug.apk
 
-  - name: Upload Android APK
+  - name: Upload APK
     uses: actions/upload-artifact@v4
     with:
       name: alex-launcher-debug-apk
